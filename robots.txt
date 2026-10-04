@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kippou-game.com/sitemap.xml
