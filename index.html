@@ -138,10 +138,24 @@
   .voices .bubble::before { left: 32px; top: -7px; margin-top: 0; border-width: 1px 0 0 1px; } /* 上の狐へ向ける */
   .greet { display: flex; justify-content: center; align-items: center; gap: 14px; margin-bottom: 28px; }
   .greet img { width: 96px; }
-  .greet.early { margin: -24px 0 48px; } /* 副題のすぐ下。.sub の下余白を詰める */
   .greet .bubble { margin: 0; text-align: left; }
   .greet .bubble { white-space: nowrap; } /* 行は <br> で切る。狭い幅で文節の途中から割れないように */
 
+  .meet { text-align: center; }
+  .intro { text-align: center; }
+  .intro .voices { margin-top: 36px; }
+  .meet .sleep { width: 220px; margin: 0 auto 28px; }
+  .talk { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .talk .greet { margin: 0; width: min(420px, 100%); justify-content: flex-start; }
+  .talk .greet img { width: 80px; flex: none; }
+  .aside { color: var(--dim); font-size: 14px; }
+  .memory .bubble { margin-top: 20px; }
+  .memory .after { margin-top: 20px; color: var(--dim); }
+  .names { font-size: 13px; color: var(--dim); line-height: 1.8; }
+  .memory img { width: min(280px, 100%); margin: 0 auto; }
+  @media (max-width: 760px) { .memory img { width: 200px; } }
+  .price .sub { margin-bottom: 32px; }
+  .price li { font-size: 15px; color: var(--dim); }
   .price { max-width: 520px; margin: 0 auto; text-align: center; }
   .price ul { list-style: none; padding: 0; }
   .price li { padding: 14px 0; border-bottom: 1px solid rgba(201,162,94,.25); }
@@ -188,7 +202,7 @@
     <source src="img/gems_tall.mp4" type="video/mp4" media="(max-width: 760px)">
     <source src="img/gems_wide.mp4" type="video/mp4">
   </video>
-  <p>見つけた一個を、好きなだけ眺める。</p>
+  <p>同じ石は、ふたつと出ない。<br>急がなくていい。気が済むまで、眺めていていい。</p>
 </section>
 
 <section>
@@ -199,27 +213,64 @@
     <p>掘った石は、当店で買い取ります。<br>良い石ほど、高く買います。<br>経験は問いません。<br>ツルハシは隣の鍛冶場で。</p>
     <p class="n-sign">町の買取所</p>
   </div>
-  <h2>掘る、手に取る、飾る</h2>
-  <p class="sub ph"><span>ツルハシ一本で、</span><span>地下4000mまで。</span><br><span>鉱物の知識は</span><span>いりません。</span><span>石のことは、</span><span>狐のキララが</span><span>教えます。</span></p>
-  <div class="greet early">
-    <img src="img/kirara_inspect.png" alt="" width="200" height="197" loading="lazy">
-    <p class="bubble"><small>キララ</small>案内はしてあげる。<br>その代わり、いい石見せてよね。</p>
+</section>
+
+<section class="meet">
+  <!-- ゲームの出会い(KiraraStory.MeetBefore/MeetAfter/MeetNamed)のセリフをそのまま。灯りを渡すまではランタンの無い絵 -->
+  <img class="sleep" src="img/kirara_sleep.png" alt="丸くなって眠る白い狐" width="440" height="292" loading="lazy">
+  <h2>石の中で、狐が眠っていた</h2>
+  <p class="sub ph"><span>最初に割った結晶から、</span><span>白い玉が</span><span>転がり出た。</span><br><span>拾い上げると、</span><span>割れ目の奥で</span><span>何かが動いた。</span></p>
+  <div class="talk">
+    <div class="greet"><img src="img/kirara_wake.png" alt="" width="200" height="197" loading="lazy"><p class="bubble">……ふあ。あっ、それ！<br>アタシの玉だよ。</p></div>
+    <p class="aside">玉を返すと、狐はぽつりと話しだした。</p>
+    <div class="greet"><img src="img/kirara_recall.png" alt="" width="200" height="229" loading="lazy"><p class="bubble">この石の中に、<br>閉じ込められてたの。……ずっと。<br><br>何度起きても出られなくて。<br>アンタが割らなきゃ、まだ寝てた。</p></div>
+    <div class="greet"><img src="img/kirara_lend.png" alt="" width="200" height="233" loading="lazy"><p class="bubble">その灯り、貸して。<br>アンタは両手で掘りな。</p></div>
+    <div class="greet"><img src="img/kirara_energetic.png" alt="" width="200" height="201" loading="lazy"><p class="bubble">借りは返すよ。<br>案内してあげる！</p></div>
   </div>
+</section>
+
+<section class="intro">
+  <p class="name">キララ</p>
+  <p class="ph"><span>灯りを持ち、</span><span>出てきた石に</span><span>いちいち口を出す。</span><br><span>宝石に詳しく、</span><span>口は少し生意気。</span></p>
+  <!-- ゲームの中のセリフ(KiraraLines)をそのまま。竜骨窟・キララの本音に触れる物は使わない -->
+  <div class="voices">
+    <div class="voice"><img src="img/kirara_cheer.png" alt="" width="200" height="206" loading="lazy"><p class="bubble"><small>初めての種類が出た時</small>アンタが掘って、アタシが見つけた。<br>半分ずつの手柄ね。</p></div>
+    <div class="voice"><img src="img/kirara_sulk.png" alt="" width="200" height="250" loading="lazy"><p class="bubble"><small>外れた時</small>ハズレかあ。<br>アンタ、顔に出すぎ。</p></div>
+    <div class="voice"><img src="img/kirara_shy.png" alt="" width="200" height="226" loading="lazy"><p class="bubble"><small>珍しい結晶が出た時</small>アンタ、見直した。<br>……ちょっとだけね。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>掘る、手に取る、飾る</h2>
+  <p class="sub ph"><span>ツルハシ一本で、</span><span>地の底へ。</span><br><span>鉱物の知識は</span><span>いりません。</span><span>石のことは、</span><span>狐のキララが</span><span>教えます。</span></p>
   <div class="steps">
     <div class="step">
       <img src="img/A_star_c6_floor.jpg" alt="結晶を割った直後の洞窟。桃色と緑のトルマリンが散らばる" width="660" height="1434" loading="lazy">
       <h3>結晶を割る</h3>
-      <p class="ph"><span>画面に</span><span>生えた</span><span>結晶を</span><span>叩いて</span><span>割ります。</span><span>時間制限は</span><span>ありません。</span></p>
+      <p class="ph"><span>生えている</span><span>結晶を、</span><span>指で</span><span>叩いて</span><span>割ります。</span></p>
     </div>
     <div class="step">
       <img src="img/B_21_1_back.jpg" alt="アメジストの晶洞を光に透かしている画面" width="660" height="825" loading="lazy">
       <h3>光にかざす</h3>
-      <p class="ph"><span>掘り当てた</span><span>一個を</span><span>指で回し、</span><span>ルーペで</span><span>のぞき、</span><span>紫外線を</span><span>当てます。</span></p>
+      <p class="ph"><span>指で回し、</span><span>ルーペで</span><span>のぞきます。</span><span>紫外線で</span><span>光りだす</span><span>石も。</span></p>
     </div>
     <div class="step">
       <img src="img/D_room_ice_zoom2.jpg" alt="標本室のガラスケースに飾ったアクアマリン" width="660" height="1434" loading="lazy">
       <h3>標本室に飾る</h3>
-      <p class="ph"><span>手放すのが</span><span>惜しい一個は、</span><span>標本室に</span><span>並べます。</span></p>
+      <p class="ph"><span>手放すのが</span><span>惜しい一個は、</span><span>標本室へ。</span><span>掘った</span><span>洞窟と</span><span>日付が、</span><span>札に</span><span>残ります。</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="memory">
+  <!-- 石の記憶(MemoryRules.Wonder)。物語の答え(向こう側・母さん・竜骨窟)には触れず、入ってきた所で止める -->
+  <div class="wide">
+    <img src="img/kirara_touch.png" alt="目を閉じ、アクアマリンに前足を乗せる白い狐" width="490" height="689" loading="lazy">
+    <div>
+      <h2 class="left">石に、<br>何かが残っている</h2>
+      <p>澄んだ一個に、キララが<br>そっと前足を乗せる。</p>
+      <p class="bubble"><small>キララ</small>……っ。今の、なに？<br>知らない誰かが、頭に入ってきた。</p>
+      <p class="after">それが誰なのかは、<br>キララにもまだ分からない。<br>深く潜るほど、少しずつ。</p>
     </div>
   </div>
 </section>
@@ -230,35 +281,20 @@
     <div>
       <h2 class="left">22種類の宝石と鉱物</h2>
       <!-- 竜骨窟の4種(アダマス・カーバンクル・クリソランピス・セレニテス)はネタバレなので名前を出さない -->
-      <p class="ph"><span>水晶、</span><span>アメジスト、</span><span>アクアマリン、</span><span>エメラルド、</span><span>ルビー、</span><span>トパーズ、</span><span>フローライト、</span><span>トルマリン、</span><span>ペリドット、</span><span>クンツァイト、</span><span>ガーネット、</span><span>オパール、</span><span>ムーンストーン、</span><span>アズライト、</span><span>カルサイト、</span><span>パイライト、</span><span>ヘマタイト、</span><span>ショールなど。</span></p>
       <p class="ph"><span>同じ種類でも、</span><span>形も</span><span>大きさも</span><span>質も</span><span>一個ずつ</span><span>違います。</span><span>洞窟は</span><span>7つあり、</span><span>深くなるほど</span><span>岩が</span><span>変わり、</span><span>出る石が</span><span>変わります。</span></p>
+      <p class="names ph"><span>水晶、</span><span>アメジスト、</span><span>アクアマリン、</span><span>エメラルド、</span><span>ルビー、</span><span>トパーズ、</span><span>フローライト、</span><span>トルマリン、</span><span>ペリドット、</span><span>クンツァイト、</span><span>ガーネット、</span><span>オパール、</span><span>ムーンストーン、</span><span>アズライト、</span><span>カルサイト、</span><span>パイライト、</span><span>ヘマタイト、</span><span>ショールなど。</span></p>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wide">
-    <img src="img/kirara.png" alt="ランタンを持つ白い狐キララ" width="480" height="504">
-    <div>
-      <p class="name">キララ</p>
-      <h2 class="left">灯りは狐が持つ。<br>あなたは掘る。</h2>
-      <p class="ph"><span>ランタンで</span><span>足元を</span><span>照らし、</span><span>出てきた</span><span>石を</span><span>品定めする</span><span>白い狐。</span><span>口は</span><span>少し</span><span>生意気です。</span></p>
-      <p class="ph"><span>最初に</span><span>割った</span><span>結晶から、</span><span>白い玉が</span><span>転がり出ます。</span><span>返してあげると、</span><span>中で</span><span>眠っていた</span><span>狐が</span><span>目を覚まします。</span></p>
-      <p class="ph"><span>なぜ狐が</span><span>深みを</span><span>目指すのかは、</span><span>潜るほどに</span><span>少しずつ</span><span>分かります。</span></p>
-    </div>
-  </div>
-  <!-- ゲームの中のセリフ(KiraraLines)をそのまま。竜骨窟・キララの本音に触れる物は使わない -->
-  <div class="voices">
-    <div class="voice"><img src="img/kirara_cheer.png" alt="" width="200" height="206" loading="lazy"><p class="bubble"><small>初めての種類が出た時</small>アンタが掘って、アタシが見つけた。<br>半分ずつの手柄ね。</p></div>
-    <div class="voice"><img src="img/kirara_sulk.png" alt="" width="200" height="250" loading="lazy"><p class="bubble"><small>外れた時</small>ハズレかあ。<br>アンタ、顔に出すぎ。</p></div>
-    <div class="voice"><img src="img/kirara_shy.png" alt="" width="200" height="226" loading="lazy"><p class="bubble"><small>珍しい結晶が出た時</small>アンタ、見直した。<br>……ちょっとだけね。</p></div>
-  </div>
-</section>
+
 
 <section>
   <div class="price">
-    <h2>広告はありません</h2>
+    <h2>急かされない</h2>
+    <p class="sub ph"><span>タイマーも、</span><span>スタミナも、</span><span>毎日こなす</span><span>課題も</span><span>ありません。</span><br><span>しばらく</span><span>離れていても、</span><span>罰は</span><span>ありません。</span><br><span>寝る前に、</span><span>ひとつだけ</span><span>掘る日が</span><span>あってもいい。</span></p>
     <ul>
+      <li>広告はありません</li>
       <li>最初の洞窟は無料で、ずっと遊べます</li>
       <li class="ph"><span>その先の洞窟は、</span><span>ひとつ200円の買い切りです</span></li>
       <li>月額の課金はありません</li>
@@ -269,7 +305,7 @@
 <section class="cta">
   <div class="greet">
     <img src="img/kirara_energetic.png" alt="" width="200" height="201" loading="lazy">
-    <p class="bubble"><small>キララ</small>来たね。<br>さあ、掘ってもらうよ。</p>
+    <p class="bubble"><small>キララ</small>待ってるからね。<br>……ちょっとだけ。</p>
   </div>
   <h2>掘りに行ける日は、<br>X で知らせます</h2>
   <p class="sub">開発中の画面を、少しずつ載せています。<br>遊んでいる様子は、X の固定ポストの動画で見られます。</p>
