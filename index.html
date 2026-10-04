@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>狐と地底の宝石｜宝石と鉱物を掘って飾る iPhone ゲーム</title>
+<meta name="description" content="結晶を割って宝石や鉱物を掘り当て、手に取って眺め、標本室に飾る iPhone ゲームです。水晶、アメジスト、エメラルドなど22種類。広告はありません。開発中です。">
+<meta property="og:title" content="狐と地底の宝石">
+<meta property="og:description" content="結晶を割って宝石や鉱物を掘り当て、手に取って眺め、標本室に飾る iPhone ゲームです。水晶、アメジスト、エメラルドなど22種類。広告はありません。開発中です。">
+<meta property="og:type" content="website">
+<!-- ponytail: ドメインを取ったら og:url と og:image を絶対URLに(X のカードは相対パスを読まない) -->
+<meta property="og:image" content="img/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kokidev_jp">
+<link rel="icon" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d18;        /* 深藍。ストア画像の下地 */
+    --bg2: #12152a;
+    --ink: #ece6d8;
+    --dim: #a59f92;
+    --brass: #c9a25e;     /* 真鍮の罫。ゲームの紙とタブバーに揃える */
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Shippori Mincho B1", "Hiragino Mincho ProN", serif;
+    font-weight: 500; line-height: 1.9; letter-spacing: .04em;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  p { word-break: auto-phrase; text-wrap: pretty; } /* 文節で改行(Chrome系) */
+  .ph span { display: inline-block; } /* Safari は auto-phrase が効かないので、長い段落は文節を手で包む */
+
+  .hero {
+    min-height: 100svh; display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-end; text-align: center;
+    padding: 48px 6vw;
+    background: linear-gradient(180deg, transparent 82%, var(--bg)), /* 下の映像へ地の色でつなぐ */
+                linear-gradient(90deg, transparent 35%, rgba(11,13,24,.85) 75%),
+                url(img/kv_wide.jpg) center / cover;
+  }
+  .hero-in { width: min(460px, 100%); }
+  .hero .logo { width: 100%; margin: 0 auto 28px; }
+  .hero h1 { font-size: 0; }
+  .lead { font-size: clamp(17px, 2.2vw, 21px); margin-bottom: 8px; }
+  .note { color: var(--dim); font-size: 13px; }
+  .follow {
+    display: inline-block; margin: 28px 0 10px; padding: 12px 32px;
+    border: 1px solid var(--brass); border-radius: 2px; color: var(--brass);
+    text-decoration: none; font-size: 16px; letter-spacing: .1em;
+    transition: background .2s, color .2s;
+  }
+  .follow:hover, .follow:focus-visible { background: var(--brass); color: var(--bg); }
+  .hero .follow, .cta .follow { background: var(--brass); color: var(--bg); font-weight: 800; }
+  .hero .follow:hover, .hero .follow:focus-visible, .cta .follow:hover, .cta .follow:focus-visible { background: #dcb877; }
+
+  /* 眺める映像: 宝石だけを幅いっぱいに。縁は地へぼかす(映像の黒 #08090e と地 #0b0d18 の継ぎ目を消す) */
+  section.gems { padding: 0 0 72px; text-align: center; }
+  .gems video {
+    display: block; width: min(100%, 160svh); aspect-ratio: 16 / 9; margin: 0 auto;
+    object-fit: cover; background: var(--bg); cursor: pointer;
+    mix-blend-mode: lighten; /* 映像の黒を地の色へ持ち上げ、薄い四角を見せない。石は明るいので変わらない */
+    -webkit-mask-image: linear-gradient(transparent, #000 6%, #000 94%, transparent), linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(transparent, #000 6%, #000 94%, transparent), linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-composite: intersect;
+  }
+  .gems p { font-size: clamp(17px, 2.2vw, 21px); padding: 0 16px; margin-top: 20px; }
+
+  section { padding: 96px 16px; }
+  section:nth-of-type(even) { background: var(--bg2); }
+  h2 {
+    font-weight: 800; font-size: clamp(22px, 3.2vw, 30px);
+    text-align: center; margin-bottom: 12px;
+  }
+  h2::after {
+    content: ""; display: block; width: 48px; height: 1px;
+    background: var(--brass); margin: 18px auto 0;
+  }
+  h2.left { text-align: left; }
+  h2.left::after { margin-left: 0; }
+  .sub { text-align: center; color: var(--dim); margin-bottom: 48px; }
+
+  .steps {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 260px));
+    justify-content: center; gap: 40px;
+  }
+  .step img {
+    border: 1px solid rgba(201,162,94,.45); border-radius: 18px;
+    margin-bottom: 20px; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 48%;
+  }
+  .step:first-child img { object-position: 50% 42%; } /* 上の数字の表示を外し、キララの吹き出しと結晶を入れる */
+  .step:last-child img { object-position: 50% 30%; }
+  .step h3 { font-weight: 800; font-size: 19px; margin-bottom: 6px; }
+  .step p { color: var(--dim); font-size: 14px; }
+
+  .wide { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 420px);
+          justify-content: center; align-items: center; gap: 56px; }
+  .wide img { border-radius: 18px; }
+  .wide p + p { margin-top: 1em; }
+
+  .bubble {
+    position: relative; display: inline-block; padding: 14px 22px;
+    border: 1px solid var(--brass); border-radius: 6px; background: var(--bg);
+    margin-bottom: 20px; line-height: 1.7;
+  }
+  .bubble::before { /* 狐の方へ向くしっぽ */
+    content: ""; position: absolute; left: -7px; top: 50%; width: 11px; height: 11px; margin-top: -6px;
+    background: var(--bg); border: solid var(--brass); border-width: 0 0 1px 1px; transform: rotate(45deg);
+  }
+  .bubble small { display: block; color: var(--brass); font-size: 12px; }
+  .notice {
+    position: relative; width: min(440px, 100%); margin: 0 auto 88px; padding: 40px 30px 30px;
+    color: #3b2c1c; text-align: center; transform: rotate(-1.2deg);
+    background: url(img/notice_paper.jpg) center / cover, #dccb9f; /* 証書の紙(tools/deed/paper.jpg)の内側を、上下のしみごとつないだ物 */
+    box-shadow: 0 10px 28px rgba(0,0,0,.55), inset 0 0 36px rgba(110,78,40,.38); /* 縁の焼け */
+  }
+  .notice::before, .notice::after { /* 留めた釘 */
+    content: ""; position: absolute; top: 12px; width: 8px; height: 8px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #9a8f80, #3a342c);
+  }
+  .notice::before { left: 14px; } .notice::after { right: 14px; }
+  .notice p { font-size: 15px; margin: 0; padding: 0; line-height: 1.9; }
+  .notice p + p { margin-top: 14px; }
+  .notice .n-head { font-weight: 800; font-size: 26px; letter-spacing: .2em; border-bottom: 1px solid rgba(59,44,28,.4); padding-bottom: 10px; }
+  .notice .n-sign { font-size: 13px; text-align: right; letter-spacing: .15em; }
+  .name { color: var(--brass); font-size: 14px; letter-spacing: .3em; margin-bottom: 4px; }
+  .voices { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 20px; max-width: 1020px; margin: 56px auto 0; }
+  .voices .bubble { margin: 0; font-size: 15px; }
+  .voice { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 320px; max-width: 100%; }
+  .voice img { width: 96px; height: 104px; object-fit: contain; object-position: bottom; } /* 足元を吹き出しの上辺にそろえる */
+  .voice .bubble { width: 100%; flex: 1; white-space: nowrap; } /* 行は <br> で切る */
+  .voices .bubble::before { left: 32px; top: -7px; margin-top: 0; border-width: 1px 0 0 1px; } /* 上の狐へ向ける */
+  .greet { display: flex; justify-content: center; align-items: center; gap: 14px; margin-bottom: 28px; }
+  .greet img { width: 96px; }
+  .greet.early { margin: -24px 0 48px; } /* 副題のすぐ下。.sub の下余白を詰める */
+  .greet .bubble { margin: 0; text-align: left; }
+  .greet .bubble { white-space: nowrap; } /* 行は <br> で切る。狭い幅で文節の途中から割れないように */
+
+  .price { max-width: 520px; margin: 0 auto; text-align: center; }
+  .price ul { list-style: none; padding: 0; }
+  .price li { padding: 14px 0; border-bottom: 1px solid rgba(201,162,94,.25); }
+  .price li:last-child { border-bottom: 0; }
+
+  .cta { text-align: center; }
+
+  footer { padding: 40px 16px; text-align: center; color: var(--dim); font-size: 12px; }
+
+  @media (max-width: 760px) {
+    .hero {
+      align-items: center; justify-content: flex-end; padding-bottom: 56px;
+      background: linear-gradient(180deg, transparent 30%, rgba(11,13,24,.92) 72%),
+                  url(img/kv_tall.jpg) center top / cover;
+    }
+    .hero .logo { width: 82%; }
+    .gems video { width: 100%; aspect-ratio: 4 / 5; }
+    .steps { grid-template-columns: minmax(0, 280px); gap: 56px; }
+    .wide { grid-template-columns: minmax(0, 340px); gap: 32px; }
+    .wide:has(.bubble) { gap: 16px; }
+    .greet { gap: 10px; }
+    .greet img { width: 64px; }
+    .greet .bubble { font-size: 14px; padding: 12px 16px; }
+    .wide .bubble::before { left: 48px; top: -7px; margin-top: 0; border-width: 1px 0 0 1px; }
+    section { padding: 72px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>狐と地底の宝石</h1>
+    <img class="logo" src="img/logo.png" alt="狐と地底の宝石 Fox and the Buried Gems" width="900" height="184">
+    <p class="lead">地の底で、自分だけの宝石を<br>掘り当てて飾る。</p>
+    <p class="note">iPhone向けに開発中です</p>
+    <a class="follow" href="https://x.com/kokidev_jp">X で開発を追いかける</a>
+  </div>
+</header>
+
+<section class="gems">
+  <video poster="img/gems_poster_wide.jpg" autoplay muted loop playsinline preload="auto"
+         aria-label="アクアマリン、ウォーターメロン・トルマリン、エメラルド、オパールが、黒い台の上で順にゆっくり回る">
+    <source src="img/gems_tall.mp4" type="video/mp4" media="(max-width: 760px)">
+    <source src="img/gems_wide.mp4" type="video/mp4">
+  </video>
+  <p>見つけた一個を、好きなだけ眺める。</p>
+</section>
+
+<section>
+  <!-- 世界の中の紙。出し手は町の買取所(ゲームの買取所の壁にも同じ物を貼る)。値段・広告・X など世界の外の事はここに書かない -->
+  <div class="notice" role="note" aria-label="町の買取所の貼り紙">
+    <p class="n-head">掘り手、求む</p>
+    <p>地の底には、宝石が<br>柱のように生えている。</p>
+    <p>掘った石は、当店で買い取ります。<br>良い石ほど、高く買います。<br>経験は問いません。<br>ツルハシは隣の鍛冶場で。</p>
+    <p class="n-sign">町の買取所</p>
+  </div>
+  <h2>掘る、手に取る、飾る</h2>
+  <p class="sub ph"><span>ツルハシ一本で、</span><span>地下4000mまで。</span><br><span>鉱物の知識は</span><span>いりません。</span><span>石のことは、</span><span>狐のキララが</span><span>教えます。</span></p>
+  <div class="greet early">
+    <img src="img/kirara_inspect.png" alt="" width="200" height="197" loading="lazy">
+    <p class="bubble"><small>キララ</small>案内はしてあげる。<br>その代わり、いい石見せてよね。</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <img src="img/A_star_c6_floor.jpg" alt="結晶を割った直後の洞窟。桃色と緑のトルマリンが散らばる" width="660" height="1434" loading="lazy">
+      <h3>結晶を割る</h3>
+      <p class="ph"><span>画面に</span><span>生えた</span><span>結晶を</span><span>叩いて</span><span>割ります。</span><span>時間制限は</span><span>ありません。</span></p>
+    </div>
+    <div class="step">
+      <img src="img/B_21_1_back.jpg" alt="アメジストの晶洞を光に透かしている画面" width="660" height="825" loading="lazy">
+      <h3>光にかざす</h3>
+      <p class="ph"><span>掘り当てた</span><span>一個を</span><span>指で回し、</span><span>ルーペで</span><span>のぞき、</span><span>紫外線を</span><span>当てます。</span></p>
+    </div>
+    <div class="step">
+      <img src="img/D_room_ice_zoom2.jpg" alt="標本室のガラスケースに飾ったアクアマリン" width="660" height="1434" loading="lazy">
+      <h3>標本室に飾る</h3>
+      <p class="ph"><span>手放すのが</span><span>惜しい一個は、</span><span>標本室に</span><span>並べます。</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wide">
+    <img src="img/C_collection_12.jpg" alt="色とりどりの標本12種" width="660" height="880" loading="lazy">
+    <div>
+      <h2 class="left">22種類の宝石と鉱物</h2>
+      <!-- 竜骨窟の4種(アダマス・カーバンクル・クリソランピス・セレニテス)はネタバレなので名前を出さない -->
+      <p class="ph"><span>水晶、</span><span>アメジスト、</span><span>アクアマリン、</span><span>エメラルド、</span><span>ルビー、</span><span>トパーズ、</span><span>フローライト、</span><span>トルマリン、</span><span>ペリドット、</span><span>クンツァイト、</span><span>ガーネット、</span><span>オパール、</span><span>ムーンストーン、</span><span>アズライト、</span><span>カルサイト、</span><span>パイライト、</span><span>ヘマタイト、</span><span>ショールなど。</span></p>
+      <p class="ph"><span>同じ種類でも、</span><span>形も</span><span>大きさも</span><span>質も</span><span>一個ずつ</span><span>違います。</span><span>洞窟は</span><span>7つあり、</span><span>深くなるほど</span><span>岩が</span><span>変わり、</span><span>出る石が</span><span>変わります。</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wide">
+    <img src="img/kirara.png" alt="ランタンを持つ白い狐キララ" width="480" height="504">
+    <div>
+      <p class="name">キララ</p>
+      <h2 class="left">灯りは狐が持つ。<br>あなたは掘る。</h2>
+      <p class="ph"><span>ランタンで</span><span>足元を</span><span>照らし、</span><span>出てきた</span><span>石を</span><span>品定めする</span><span>白い狐。</span><span>口は</span><span>少し</span><span>生意気です。</span></p>
+      <p class="ph"><span>最初に</span><span>割った</span><span>結晶から、</span><span>白い玉が</span><span>転がり出ます。</span><span>返してあげると、</span><span>中で</span><span>眠っていた</span><span>狐が</span><span>目を覚まします。</span></p>
+      <p class="ph"><span>なぜ狐が</span><span>深みを</span><span>目指すのかは、</span><span>潜るほどに</span><span>少しずつ</span><span>分かります。</span></p>
+    </div>
+  </div>
+  <!-- ゲームの中のセリフ(KiraraLines)をそのまま。竜骨窟・キララの本音に触れる物は使わない -->
+  <div class="voices">
+    <div class="voice"><img src="img/kirara_cheer.png" alt="" width="200" height="206" loading="lazy"><p class="bubble"><small>初めての種類が出た時</small>アンタが掘って、アタシが見つけた。<br>半分ずつの手柄ね。</p></div>
+    <div class="voice"><img src="img/kirara_sulk.png" alt="" width="200" height="250" loading="lazy"><p class="bubble"><small>外れた時</small>ハズレかあ。<br>アンタ、顔に出すぎ。</p></div>
+    <div class="voice"><img src="img/kirara_shy.png" alt="" width="200" height="226" loading="lazy"><p class="bubble"><small>珍しい結晶が出た時</small>アンタ、見直した。<br>……ちょっとだけね。</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="price">
+    <h2>広告はありません</h2>
+    <ul>
+      <li>最初の洞窟は無料で、ずっと遊べます</li>
+      <li class="ph"><span>その先の洞窟は、</span><span>ひとつ200円の買い切りです</span></li>
+      <li>月額の課金はありません</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="greet">
+    <img src="img/kirara_energetic.png" alt="" width="200" height="201" loading="lazy">
+    <p class="bubble"><small>キララ</small>来たね。<br>さあ、掘ってもらうよ。</p>
+  </div>
+  <h2>掘りに行ける日は、<br>X で知らせます</h2>
+  <p class="sub">開発中の画面を、少しずつ載せています。<br>遊んでいる様子は、X の固定ポストの動画で見られます。</p>
+  <a class="follow" href="https://x.com/kokidev_jp">@kokidev_jp をフォロー</a>
+</section>
+
+<footer>
+  <p>画面は開発中のものです</p>
+  <p>© 2026 kokidev</p>
+</footer>
+
+<script>
+  // 動きを減らす設定の人と、自動再生が止められた時(低電力モード)は再生ボタンを出す。
+  // タップで止める・再開する。画面の外では止め、戻ったら再生する(タップで止めた時はそのまま)
+  const v = document.querySelector(".gems video");
+  if (matchMedia("(max-width: 760px)").matches) v.poster = "img/gems_poster_tall.jpg";
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    v.removeAttribute("autoplay"); v.pause(); v.controls = true;
+  } else {
+    let held = false;
+    const play = () => v.play().catch(() => { v.controls = true; });
+    v.addEventListener("click", () => {
+      if (v.controls) return;
+      held = !v.paused; held ? v.pause() : play();
+    });
+    new IntersectionObserver(([e]) => { if (!e.isIntersecting) v.pause(); else if (!held) play(); }, { threshold: 0.3 }).observe(v); // 3割見えてから再生(頭の暗転を見せにくく)
+  }
+</script>
+
+</body>
+</html>
