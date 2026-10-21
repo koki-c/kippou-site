@@ -128,8 +128,8 @@ h2.left::after { margin-left: 0; }
 .intro .voices { margin-top: 36px; }
 .meet .sleep { width: 220px; margin: 0 auto 28px; }
 .talk { display: flex; flex-direction: column; align-items: center; gap: 22px; }
-.talk .greet { margin: 0; width: min(420px, 100%); justify-content: flex-start; }
-.talk .greet :is(img, canvas) { width: 80px; flex: none; }
+.talk .greet { margin: 0; width: min(520px, 100%); justify-content: flex-start; }
+.talk .greet :is(img, canvas) { width: 120px; flex: none; } /* 元の絵は 200px。小さくすると顔が潰れる */
 .aside { color: var(--dim); font-size: 14px; }
 .memory .bubble { margin-top: 20px; white-space: nowrap; } /* 行は <br> で切る(Safari は文節で折らない) */
 .memory .after { margin-top: 20px; color: var(--dim); }
@@ -163,8 +163,12 @@ footer { padding: 40px 16px; text-align: center; color: var(--dim); font-size: 1
   .steps { grid-template-columns: minmax(0, 280px); gap: 56px; }
   .wide { grid-template-columns: minmax(0, 340px); gap: 32px; }
   .wide:has(.bubble) { gap: 16px; }
-  .greet { gap: 10px; }
-  .greet :is(img, canvas) { width: 64px; }
+  /* 狭い幅は狐を吹き出しの上に置き、大きく見せる(横に並べると 64px まで縮み、吹き出しも画面からはみ出した) */
+  .greet { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .greet :is(img, canvas) { width: 104px; }
+  .greet .bubble::before { left: 40px; top: -7px; margin-top: 0; border-width: 1px 0 0 1px; }
+  .cta .greet { align-items: center; }
+  .cta .greet .bubble::before { left: 50%; margin-left: -6px; }
   .greet .bubble { font-size: 14px; padding: 12px 16px; }
   .wide .bubble::before { left: 48px; top: -7px; margin-top: 0; border-width: 1px 0 0 1px; }
   section { padding: 72px 16px; }
@@ -173,3 +177,22 @@ footer { padding: 40px 16px; text-align: center; color: var(--dim); font-size: 1
 .lang { position: absolute; top: 16px; right: 20px; font-size: 13px; color: var(--dim); text-decoration: none; letter-spacing: .1em; }
 .lang:hover, .lang:focus-visible { color: var(--brass); }
 :lang(en) .hero h1, :lang(en) .lead, :lang(en) p { letter-spacing: .01em; } /* 欧文に和文の字間は広すぎる */
+
+/* 標本室のしつらえ: 同じ枠の中で部屋を入れ替える。キララは下の夜の1枚にだけ */
+.rooms .wide { grid-template-columns: minmax(0, 420px) minmax(0, 340px); }
+.swap { display: grid; cursor: pointer; }
+.swap figure { grid-area: 1 / 1; margin: 0; opacity: 0; transition: opacity 1.2s; }
+.swap figure.on { opacity: 1; }
+.swap figure:not(.on) figcaption { visibility: hidden; } /* 名前は重ねずに切り替える */
+.swap img, .dusk img { border: 1px solid rgba(201,162,94,.45); }
+.swap figcaption { margin-top: 10px; font-size: 14px; color: var(--dim); text-align: center; letter-spacing: .1em; }
+.rooms .more { color: var(--dim); }
+.wide.dusk { margin-top: 88px; grid-template-columns: minmax(0, 340px) minmax(0, 420px); }
+.dusk .bubble { margin-top: 20px; white-space: nowrap; } /* 行は <br> で切る */
+.dusk .bubble::before { left: auto; right: -7px; border-width: 1px 1px 0 0; } /* 右の絵のキララへ向ける */
+@media (max-width: 760px) {
+  .rooms .wide, .wide.dusk { grid-template-columns: minmax(0, 400px); }
+  .wide.dusk { margin-top: 64px; }
+  .dusk img { order: -1; } /* 絵を先に、吹き出しは上の絵へ向ける */
+  .dusk .bubble::before { right: auto; left: 48px; top: -7px; border-width: 1px 0 0 1px; }
+}
