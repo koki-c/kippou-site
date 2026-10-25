@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fox and the Buried Gems | Dig Up and Display Gems on iPhone</title>
-<meta name="description" content="Crack open crystals, dig up gems and minerals, turn them in your hand, and display them in a specimen room furnished the way you like. Over 20 kinds, from quartz and amethyst to emerald. No ads. Coming to iPhone in winter 2026.">
+<meta name="description" content="Tap crystals to dig up gems and minerals, turn each labeled specimen in your hand, and display it in a specimen room furnished the way you like. Over 20 kinds, from quartz and amethyst to emerald. No ads, no gacha. Coming to iPhone in winter 2026.">
 <meta property="og:title" content="Fox and the Buried Gems">
-<meta property="og:description" content="Crack open crystals, dig up gems and minerals, turn them in your hand, and display them in a specimen room furnished the way you like. Over 20 kinds, from quartz and amethyst to emerald. No ads. Coming to iPhone in winter 2026.">
+<meta property="og:description" content="Tap crystals to dig up gems and minerals, turn each labeled specimen in your hand, and display it in a specimen room furnished the way you like. Over 20 kinds, from quartz and amethyst to emerald. No ads, no gacha. Coming to iPhone in winter 2026.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://kippou-game.com/en/">
@@ -19,7 +19,7 @@
 {"@context": "https://schema.org", "@type": "VideoGame",
  "name": "Fox and the Buried Gems", "alternateName": "狐と地底の宝石",
  "url": "https://kippou-game.com/en/", "image": "https://kippou-game.com/img/ogp_en.jpg",
- "description": "Crack open crystals, dig up gems and minerals, and display them in a specimen room furnished the way you like. An iPhone game.",
+ "description": "Tap crystals to dig up gems and minerals, and display them in a specimen room furnished the way you like. An iPhone game.",
  "gamePlatform": "iOS", "operatingSystem": "iOS", "inLanguage": "en",
  "author": {"@type": "Person", "name": "kokidev", "url": "https://x.com/kokidev_jp"}}
 </script>
@@ -42,7 +42,8 @@
     <h1>Fox and the Buried Gems</h1>
     <img class="logo" src="../img/logo_en.png" alt="Fox and the Buried Gems" width="900" height="237">
     <p class="lead">Deep underground, dig up gems<br>no one else has, and keep them.</p>
-    <p class="note">An iPhone game · Coming winter 2026</p>
+    <p class="promise">No ads · No gacha · One-time purchases</p>
+    <p class="note">An iPhone game · First cave free · Coming winter 2026</p>
     <a class="follow" href="https://x.com/kokidev_jp">Follow Development on X</a>
   </div>
   <a class="more-cue" href="#gems" aria-label="See more"></a>
@@ -59,12 +60,18 @@
 
 <section>
   <h2>Dig, Look, Display</h2>
-  <p class="sub">Just you and a pickaxe, heading underground.<br>You don’t need to know a thing about minerals. Kirara the fox will teach you.</p>
+  <p class="sub">All you do is tap, swipe to pick up, and turn to look.<br>You don’t need to know a thing about minerals. Kirara the fox will teach you.</p>
+  <ul class="easy">
+    <li>No time limits</li>
+    <li>Close the app anytime, and it’s all still there</li>
+    <li>The first cave is free</li>
+  </ul>
   <div class="steps">
     <div class="step">
-      <img src="../img/A_star_c6_floor.jpg" alt="A cave right after a crystal was cracked, with pink and green tourmaline scattered on the floor" width="660" height="1434" loading="lazy">
-      <h3>Crack Crystals</h3>
-      <p>Tap the crystals growing from the cave walls to crack them open. Gems are waiting inside.</p>
+      <video class="crack" poster="../img/crack_poster.jpg" autoplay muted loop playsinline preload="none" width="560" height="700"
+             aria-label="A pickaxe taps a crystal in the cave; cracks run through it, pieces fall away, and a glowing stone comes out"><source src="../img/crack.mp4" type="video/mp4"></video>
+      <h3>Tap Crystals to Dig</h3>
+      <p>Tap the crystals growing in the cave. Cracks run through them, pieces fall away, and gems come out.</p>
     </div>
     <div class="step">
       <img src="../img/B_21_1_back.jpg" alt="An amethyst geode held up to the light" width="660" height="825" loading="lazy">
@@ -74,7 +81,20 @@
     <div class="step">
       <img src="../img/D_case_emerald.jpg" alt="An emerald in a glass case in the study, with a label for the cave and the date" width="660" height="1434" loading="lazy">
       <h3>Display Your Favorites</h3>
-      <p>Display the ones you want to keep in the glass cases of your specimen room. Each gets a label with the cave and the date you found it.</p>
+      <p>Display the ones you want to keep in the glass cases of your specimen room, each with its label beside it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <!-- 日本語版と同じ絵(札とキララの一言は日本語のまま)。キララの一言はゲームの英語の表(Loc/en/KiraraLines.Event)から -->
+  <div class="wide">
+    <img src="../img/card_kirara.jpg" alt="The label for a single quartz crystal marked Museum, with the note “large, and not chipped to the tip”: the cave, the depth, the date, 6.0 cm, colorless, clear, perfect tip. Kirara’s eyes shine: “Not a single chip. Flawless from every side.”" width="660" height="987" loading="lazy">
+    <div>
+      <h2 class="left">Every Stone<br>Gets Its Own Label</h2>
+      <p>Each specimen you pick up comes with a label: its name, the cave and depth you found it at, the date, its size, and what makes it look the way it does.</p>
+      <p>A point without a single chip. A lump holding gold. A crystal with water sealed inside. Even among quartz, no two labels are alike.</p>
+      <p class="dim">Ordinary labels carry no scores or grades. Only the very best get a “Select” or “Museum” mark, with a line on what makes them special. Star the ones you love.</p>
     </div>
   </div>
 </section>
@@ -91,59 +111,20 @@
       <figure><img src="../img/room_snowqueen.jpg" alt="A pale blue room with a ribboned chair" width="900" height="1125" loading="lazy"><figcaption>The Snow Queen’s Room</figcaption></figure>
     </div>
     <div>
-      <p>Each cave has its own specimen room. Change it into whichever room you like, and try any room out before you buy it.</p>
+      <p>Each cave has its own specimen room, and you can change the whole room into whichever one you like. Try any room in your own specimen room before you buy it. You pay with the money from selling the stones you dig.</p>
       <p class="more">The deeper you go, the more rooms the Furnisher in town has for sale.<br>There are plenty more than shown here.</p>
     </div>
   </div>
-  <div class="wide dusk">
-    <div>
-      <p>At night, the lamps come on.<br>Kirara always takes the same seat.</p>
-      <p class="bubble"><small>Kirara</small>Can this be my usual spot?<br>…I’m sitting here either way.</p>
+  <div class="steps two">
+    <div class="step">
+      <img src="../img/room_musicbox.jpg" alt="A music box plays in the corner of the specimen room, and Kirara on the bench says “Whoa, it’s playing! The gold part’s turning.”" width="660" height="660" loading="lazy">
+      <h3>Cave Songs on a Music Box</h3>
+      <p>The songs you heard in the caves are added to the music box one by one. Pick a favorite and play it in your specimen room.</p>
     </div>
-    <img src="../img/room_hearth_kirara.jpg" alt="A crimson hearth room at night, lit by the stove and a lamp, with Kirara on the daybed" width="900" height="1125" loading="lazy">
-  </div>
-</section>
-
-<section>
-  <div class="notice" role="note" aria-label="A notice posted by the town gem buyer">
-    <p class="n-head">Miners Wanted</p>
-    <p>Deep below, gems grow<br>like pillars from the rock.</p>
-    <p>We buy what you dig.<br>The better the stone, the better the price.<br>No experience needed.<br>Pickaxes at the smithy next door.</p>
-    <p class="n-sign">The Town Gem Buyer</p>
-  </div>
-</section>
-
-<section class="meet">
-  <img class="sleep" src="../img/kirara_sleep.png" alt="A white fox curled up asleep" width="440" height="292" loading="lazy">
-  <h2>A fox was sleeping inside the crystal</h2>
-  <p class="sub">From the first crystal you cracked, a white orb rolled out.<br>As you picked it up, something stirred deep in the crack.</p>
-  <div class="talk">
-    <div class="greet"><img src="../img/kirara_wake.png" data-body="../img/kirara_wake_body.png" data-tail="128.0 145.8 98.0 1.55 205" alt="" width="200" height="197" loading="lazy"><p class="bubble">…Mmh. Hey, that’s mine!<br>That’s my orb.</p></div>
-    <p class="aside">You hand it back, and the fox starts to talk.</p>
-    <div class="greet"><img src="../img/kirara_recall.png" data-body="../img/kirara_recall_body.png" data-tail="153.7 175.1 123.3 1.5 205" alt="" width="200" height="229" loading="lazy"><p class="bubble">I was trapped in that stone.<br>…For ages.<br><br>Every time I woke up,<br>I still couldn’t get out.<br>If you hadn’t cracked it,<br>I’d still be asleep.</p></div>
-    <div class="greet"><img src="../img/kirara_lend.png" data-body="../img/kirara_lend_body.png" data-tail="139.8 181.7 122.3 1.5 208" alt="" width="200" height="233" loading="lazy"><p class="bubble">Let me hold that light.<br>Digging’s easier with both hands free.</p></div>
-    <div class="greet"><img src="../img/kirara_energetic.png" data-body="../img/kirara_energetic_body.png" data-tail="145.6 161.7 108.2 1.3 242" alt="" width="200" height="201" loading="lazy"><p class="bubble">I pay my debts.<br>I’ll show you around!</p></div>
-  </div>
-</section>
-
-<section class="intro">
-  <p class="name">KIRARA</p>
-  <p>Your fox companion, holding the light in the caves.<br>She knows her gems and has something to say<br>about every stone you find.<br>She can’t lie, and what she won’t say, her tail gives away.</p>
-  <div class="voices">
-    <div class="voice"><img src="../img/kirara_cheer.png" data-body="../img/kirara_cheer_body.png" data-tail="146.2 142.5 101.4 1.22 229" alt="" width="200" height="206" loading="lazy"><p class="bubble"><small>Finding a new kind</small>You dug, I held the light.<br>Not a bad split, right?</p></div>
-        <div class="voice"><img src="../img/kirara_shy.png" data-body="../img/kirara_shy_body.png" data-tail="139.5 183.5 130.8 1.1 220" alt="" width="200" height="226" loading="lazy"><p class="bubble"><small>Finding a rare crystal</small>…Shh.<br>I’m busy admiring it.</p></div>
-    <div class="voice"><img src="../img/kirara_affection.png" data-body="../img/kirara_affection_body.png" data-tail="158.2 140.8 120.8 1.36 224" alt="" width="200" height="187" loading="lazy"><p class="bubble"><small>Getting one out whole</small>Let’s display this one under the light.<br>…You think so too, right?</p></div>
-  </div>
-</section>
-
-<section class="memory">
-  <div class="wide">
-    <img src="../img/kirara_touch.png" alt="A white fox with her eyes closed, resting a paw on an aquamarine" width="490" height="689" loading="lazy">
-    <div>
-      <h2 class="left">Something lingers<br>in the gems</h2>
-      <p>Kirara gently rests a paw<br>on a clear stone.</p>
-      <p class="bubble"><small>Kirara</small>…! What was that?<br>Someone I don’t know<br>just came into my head.</p>
-      <p class="after">Who it was, even Kirara<br>doesn’t know yet.<br>The deeper you go, the more you learn.</p>
+    <div class="step">
+      <img src="../img/room_nap.jpg" alt="Kirara on top of a glass case in the specimen room: “I was dreaming of stones… sparkly, fluffy…”" width="660" height="660" loading="lazy">
+      <h3>Kirara Makes Herself at Home</h3>
+      <p>Look around your specimen room and you may find her napping on a case, mumbling sleepily about her dreams of stones.</p>
     </div>
   </div>
 </section>
@@ -154,21 +135,43 @@
     <div>
       <h2 class="left">Over 20 Kinds of Gems and Minerals</h2>
       <p>Even stones of the same kind differ in shape, size, and quality. There are 7 caves. Deeper caves have different scenery, and different gems to find.</p>
-      <p class="names">Quartz, amethyst, aquamarine, emerald, ruby, topaz, fluorite, tourmaline, peridot, kunzite, garnet, opal, moonstone, azurite, calcite, pyrite, hematite, schorl, and more.</p>
+      <p>Quartz with gold, amethyst with a phantom, trapiche emerald. More than 70 kinds of specimens in all.</p>
+      <p class="real">Every gem is modeled by comparing it with photos of real specimens.</p>
     </div>
+  </div>
+</section>
+
+<section class="meet">
+  <img class="sleep" src="../img/kirara_sleep.png" alt="A white fox curled up asleep" width="440" height="292" loading="lazy">
+  <h2>A fox was sleeping inside the crystal</h2>
+  <p class="sub">From the first crystal you cracked, a white orb rolled out.<br>As you picked it up, something stirred deep in the crack.</p>
+  <div class="talk">
+    <div class="greet"><img src="../img/kirara_wake.png" data-body="../img/kirara_wake_body.png" data-tail="128.0 145.8 98.0 1.55 205" alt="" width="200" height="197" loading="lazy"><p class="bubble">…Mmh. Hey!<br>That’s my orb!</p></div>
+    <p class="aside">You hand the orb back, and the fox takes the light for you.</p>
+    <div class="greet"><img src="../img/kirara_energetic.png" data-body="../img/kirara_energetic_body.png" data-tail="145.6 161.7 108.2 1.3 242" alt="" width="200" height="201" loading="lazy"><p class="bubble">I always pay my debts.<br>I’ll be your guide!</p></div>
+  </div>
+  <p class="sub after-meet">When Kirara rests a paw on a clear gem, someone’s faraway memories seem to surface.<br>The deeper you go, the more you learn.</p>
+</section>
+
+<section class="intro">
+  <p class="name">KIRARA</p>
+  <p>Your fox companion, holding the light in the caves.<br>She knows her gems and has something to say<br>about every stone you find.<br>She can’t lie, and what she won’t say, her tail gives away.</p>
+  <div class="voices">
+    <div class="voice"><img src="../img/kirara_shy.png" data-body="../img/kirara_shy_body.png" data-tail="139.5 183.5 130.8 1.1 220" alt="" width="200" height="226" loading="lazy"><p class="bubble"><small>Finding a rare crystal</small>…Shh.<br>I’m busy admiring it.</p></div>
   </div>
 </section>
 
 <section>
   <div class="price">
     <h2>Dig When You Want,<br>as Long as You Want</h2>
-    <p class="sub">No stamina. No daily quests.<br>A few minutes before bed, or a whole lazy Sunday.</p>
+    <p class="sub">No stamina. No daily quests.<br>Close the app anytime, and your half-dug cave will be waiting.<br>A few minutes before bed, or a whole lazy Sunday.</p>
     <ul>
       <li>No ads</li>
-      <li>The first cave is free to play forever</li>
-      <li>The other 6 caves are one-time purchases</li>
-      <li>No subscriptions</li>
-      <li>New rooms for your specimen room are bought with in-game money from selling the stones you dig</li>
+      <li>No gacha, and no subscriptions</li>
+      <li>Rooms and the music box are bought with in-game money from selling the stones you dig</li>
+      <li>The first cave is <b>free</b> to play forever</li>
+      <li>The other 6 caves are each a one-time purchase</li>
+      <li>Try one crystal in any cave before you buy it</li>
     </ul>
   </div>
 </section>
@@ -176,7 +179,7 @@
 <section class="cta">
   <div class="greet">
     <img src="../img/kirara_energetic.png" data-body="../img/kirara_energetic_body.png" data-tail="145.6 161.7 108.2 1.3 242" data-wag alt="" width="200" height="201" loading="lazy">
-    <p class="bubble"><small>Kirara</small>Am I waiting? Not telling.<br>…Don’t look at my tail.</p>
+    <p class="bubble"><small>Kirara</small>So, which stone are you<br>showing me next?</p>
   </div>
   <h2>I’ll post on X<br>when the game is out</h2>
   <p class="sub">I share in-progress screens as I go.<br>See it in action in the video pinned on X.</p>
@@ -192,6 +195,9 @@
 <script>
   // 日本語版と同じ
   const v = document.querySelector(".gems video");
+  const crack = document.querySelector(".step video");
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { crack.removeAttribute("autoplay"); crack.controls = true; }
+  else new IntersectionObserver(([e]) => { e.isIntersecting ? crack.play().catch(() => { crack.controls = true; }) : crack.pause(); }, { threshold: 0.5 }).observe(crack);
   if (matchMedia("(max-width: 760px)").matches) v.poster = "../img/gems_poster_tall.jpg";
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
     v.removeAttribute("autoplay"); v.pause(); v.controls = true;
