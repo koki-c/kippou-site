@@ -225,3 +225,54 @@ footer { padding: 40px 16px; text-align: center; color: var(--dim); font-size: 1
 .names { font-size: 15px; color: #c2bcae; }
 .price li.small { font-size: 14px; }
 .after-meet { margin: 40px auto 0; }
+
+/* 11-12 日本語版の組み直し(英語版は使っていないクラス) */
+/* 掘り当てる: 題字のすぐ下の見せ場。広い画面は動画と文を横に、狭い画面は動画をほぼ幅いっぱいに */
+.dig-in { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 400px); justify-content: center; align-items: center; gap: 56px; }
+.dig video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; border: 1px solid rgba(201,162,94,.45); border-radius: 18px; background: #000; }
+.dig p + p, .deep .wide p + p { margin-top: 1em; }
+.dig .dim { color: var(--dim); }
+/* 眺める: 動画の下に見出しと文、小さく3枚 */
+.gems h2 { margin-top: 32px; padding: 0 16px; }
+.gems .sub { font-size: inherit; padding: 0 16px; margin: 0 auto 36px; max-width: 36em; }
+.look { display: grid; grid-template-columns: repeat(3, minmax(0, 220px)); justify-content: center; gap: 12px; padding: 0 16px; }
+.look figure { margin: 0; }
+.look img { border: 1px solid rgba(201,162,94,.45); border-radius: 12px; }
+.look h3 { font-size: 14px; font-weight: 800; margin-top: 8px; letter-spacing: .02em; }
+/* 並べる: 4枚を 4:5 の枠にそろえ、広い画面は4列・狭い画面は2列×2段 */
+.shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 230px)); justify-content: center; gap: 28px 20px; margin-top: 40px; }
+.shelf img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid rgba(201,162,94,.45); border-radius: 12px; }
+.shelf img.top { object-position: top; }
+.shelf p { margin-top: 10px; font-size: 14px; color: var(--dim); line-height: 1.8; }
+.shelf .swap figcaption { margin-top: 8px; font-size: 13px; color: var(--brass); }
+.shelf .swap + p { margin-top: 2px; }
+/* 沈む絵: 上(キービジュアルと同じ所)を切り、字幕は字の後ろを暗くして重ねる */
+.descent { position: relative; width: min(100%, 440px); margin: -40px auto 72px; }
+.descent img { width: 100%; aspect-ratio: 900 / 1360; object-fit: cover; object-position: 50% 64%; /* 元の絵の 1510〜2870px(紫・緑・青・赤・桃の洞) */
+  -webkit-mask-image: linear-gradient(transparent, #000 5%, #000 95%, transparent), linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(transparent, #000 5%, #000 95%, transparent), linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-composite: intersect; }
+.descent p { position: absolute; left: 50%; translate: -50% 0; width: max-content; max-width: calc(100% - 24px);
+  padding: 14px 22px; font-size: clamp(15px, 4.2vw, 17px); letter-spacing: .08em; text-align: center;
+  background: radial-gradient(closest-side, rgba(8,9,14,.82) 55%, transparent); text-shadow: 0 0 8px #000, 0 0 2px #000; }
+.deep .wide { margin-top: 0; }
+/* 節の文の終わりに添える、小さなキララの一言(左に狐、右に吹き出し) */
+.say { display: flex; align-items: center; gap: 10px; margin-top: 28px; }
+.say :is(img, canvas) { width: 72px; flex: none; border: 0; border-radius: 0; }
+.say .bubble { margin: 0; padding: 10px 16px; font-size: 14px; white-space: nowrap; } /* 行は <br> で切る */
+.say .bubble small { font-size: 11px; }
+.say .bubble::before { left: -7px; top: 50%; margin-top: -6px; border-width: 0 0 1px 1px; } /* .wide の狭い幅の向きを打ち消す */
+/* キララのうたた寝 */
+.nap { margin-top: 72px; text-align: left; }
+.nap img { border: 1px solid rgba(201,162,94,.45); }
+.nap h3 { font-weight: 800; font-size: 19px; margin-bottom: 6px; }
+.nap p { color: var(--dim); }
+@media (max-width: 760px) {
+  .dig-in { grid-template-columns: minmax(0, 480px); gap: 32px; }
+  .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; }
+  .descent { width: calc(100% + 32px); margin: -32px -16px 56px; }
+  .nap { margin-top: 56px; }
+}
+:lang(en) :is(h2, h3, .note, .price li) { text-wrap: balance; }
+:lang(en) .descent p { letter-spacing: .03em; } /* 英語の見出しの終わりに1語だけ落ちないように */
